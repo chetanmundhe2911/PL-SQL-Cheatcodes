@@ -51,7 +51,7 @@ Primary Key Information : Add p.pk from pragma_table_info().
 Nullable Columns : Include p.notnull for nullability status.
 Example:
 
-
+``` bash
 SELECT
     m.name AS TableName,
     p.name AS ColumnName,
