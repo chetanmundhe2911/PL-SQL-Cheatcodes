@@ -66,7 +66,7 @@ WHERE
     m.type = 'table'
 ORDER BY
     TableName, p.cid;
-
+```
     
 ### Author
 This snippet was developed to simplify schema analysis in SQLite databases. Contributions and suggestions are welcome. Feel free to adapt this query to suit your needs.
