@@ -104,3 +104,47 @@ GROUP BY
     c.CustomerId, c.FirstName, c.LastName
 ORDER BY 
     NumberOfPurchases DESC;
+
+--Analyze Revenue by Genre
+SELECT 
+    g.Name AS Genre,
+    SUM(il.Quantity * il.UnitPrice) AS Revenue
+FROM 
+    InvoiceLine il
+JOIN 
+    Track t ON il.TrackId = t.TrackId
+JOIN 
+    Genre g ON t.GenreId = g.GenreId
+GROUP BY 
+    g.Name
+ORDER BY 
+    Revenue DESC;
+
+-- Retrieve Tracks Purchased by Each Customer
+SELECT 
+    c.CustomerId,
+    c.FirstName,
+    c.LastName,
+    t.Name AS TrackName,
+    i.InvoiceDate
+FROM 
+    Customer c
+JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+JOIN 
+    InvoiceLine il ON i.InvoiceId = il.InvoiceId
+JOIN 
+    Track t ON il.TrackId = t.TrackId
+ORDER BY 
+    c.CustomerId, i.InvoiceDate;
+
+--Monthly Revenue Analysis
+SELECT 
+    strftime('%Y-%m', i.InvoiceDate) AS YearMonth,
+    SUM(i.Total) AS MonthlyRevenue
+FROM 
+    Invoice i
+GROUP BY 
+    YearMonth
+ORDER BY 
+    YearMonth;
