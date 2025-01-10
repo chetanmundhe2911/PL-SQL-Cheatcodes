@@ -59,4 +59,48 @@ WHERE
 ORDER BY 
     r.TotalRevenue DESC;
 
--- 
+-- Retrieve Basic Customer Information
+SELECT 
+    CustomerId,
+    FirstName,
+    LastName,
+    City,
+    State,
+    Country,
+    Email
+FROM 
+    Customer;
+
+
+--Aggregate Total Revenue by Customer
+
+SELECT 
+    c.CustomerId,
+    c.FirstName,
+    c.LastName,
+    SUM(i.Total) AS TotalRevenue
+FROM 
+    Customer c
+JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY 
+    c.CustomerId, c.FirstName, c.LastName
+ORDER BY 
+    TotalRevenue DESC;
+
+
+
+--Count Purchases Each Customer Has Made
+SELECT 
+    c.CustomerId,
+    c.FirstName,
+    c.LastName,
+    COUNT(i.InvoiceId) AS NumberOfPurchases
+FROM 
+    Customer c
+JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY 
+    c.CustomerId, c.FirstName, c.LastName
+ORDER BY 
+    NumberOfPurchases DESC;
