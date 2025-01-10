@@ -164,4 +164,30 @@ ORDER BY
     CityRevenue DESC;
 
 --Identify Customers with No Purchases
+SELECT 
+    c.CustomerId,
+    c.FirstName,
+    c.LastName,
+    c.Email
+FROM 
+    Customer c
+LEFT JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+WHERE 
+    i.InvoiceId IS NULL;
+
+--Prepare Data for Classification Model
+SELECT 
+    c.CustomerId,
+    c.FirstName || ' ' || c.LastName AS CustomerFullName,
+    c.City,
+    c.Country,
+    COUNT(i.InvoiceId) AS NumberOfPurchases,
+    SUM(i.Total) AS TotalRevenue
+FROM 
+    Customer c
+LEFT JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY 
+    c.CustomerId, c.FirstName, c.LastName, c.City, c.Country;
 
