@@ -148,3 +148,20 @@ GROUP BY
     YearMonth
 ORDER BY 
     YearMonth;
+
+--Top Spending Cities
+SELECT 
+    c.City,
+    c.Country,
+    SUM(i.Total) AS CityRevenue
+FROM 
+    Customer c
+JOIN 
+    Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY 
+    c.City, c.Country
+ORDER BY 
+    CityRevenue DESC;
+
+--Identify Customers with No Purchases
+
