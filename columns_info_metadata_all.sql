@@ -191,3 +191,7 @@ LEFT JOIN
 GROUP BY 
     c.CustomerId, c.FirstName, c.LastName, c.City, c.Country;
 
+
+-- adding new line
+
+
