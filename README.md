@@ -6,7 +6,8 @@ This is particularly useful for database analysis, schema validation, and explor
 
 Query Explanation
 
-⌄
+``` bash
+
 SELECT
     m.name AS TableName,
     p.name AS ColumnName,
@@ -19,6 +20,8 @@ WHERE
     m.type = 'table'
 ORDER BY
     TableName, p.cid;
+
+```
 
     
 ### Key Components of the Query
